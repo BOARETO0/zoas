@@ -1,132 +1,189 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap");
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
-    font-weight: bold;
+:root{
+  --bg1:#fff1f3;
+  --bg2:#f6f6ff;
+  --card: rgba(255,255,255,.75);
+  --stroke: rgba(255,255,255,.35);
+  --text:#2a2a2a;
+  --muted:#666;
+  --accent:#ff4d6d;
+  --accent2:#ff7a90;
+  --shadow: 0 20px 60px rgba(0,0,0,.10);
+  --shadow2: 0 10px 25px rgba(255,77,109,.22);
 }
 
-body {
-    background-color: #f6f6f6;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Montserrat", sans-serif;
+  font-weight:800;
 }
 
-/* Estilos do header */
-.nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-    height: 80px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-    transition: all 0.3s ease-in-out;
+body{
+  min-height:100vh;
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 15% 10%, var(--bg1) 0%, transparent 60%),
+              radial-gradient(1200px 800px at 85% 25%, var(--bg2) 0%, transparent 55%),
+              linear-gradient(135deg, #ffffff 0%, #f7f7fb 40%, #fff5f7 100%);
+  overflow-x:hidden;
 }
 
-.logo {
-    font-size: 2rem;
-    color: #f26161;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+/* 💖 Header */
+.nav{
+  position:fixed;
+  top:0; left:0; right:0;
+  height:72px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: rgba(255,255,255,.70);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  z-index:10;
 }
 
-/* Estilos do conteúdo */
-main {
-    padding: 80px 20px 0 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 120px);
-    text-align: center;
+.logo{
+  font-size:1.6rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color: var(--accent);
+  display:flex;
+  align-items:center;
+  gap:.6rem;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* ✨ Conteúdo */
+main{
+  padding: 110px 20px 90px;
+  min-height: calc(100vh - 40px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-h1 {
-    font-size: 3rem;
-    color: #f26161;
-    margin-bottom: 30px;
+.container{
+  width:min(720px, 92vw);
+  padding: 44px 28px;
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  position:relative;
+  overflow:hidden;
 }
 
-#yes {
-    background-color: #fff;
-    color: #ff6961;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+/* brilho sutil no card */
+.container::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(500px 180px at 30% 0%, rgba(255,77,109,.18), transparent 60%),
+              radial-gradient(420px 160px at 80% 20%, rgba(255,122,144,.18), transparent 65%);
+  pointer-events:none;
 }
 
-#yes:hover {
-    background-color: #ff6961;
-    color: #fff;
+h1{
+  position:relative;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+  margin-bottom: 18px;
+  color: var(--accent);
+  text-shadow: 0 10px 35px rgba(255,77,109,.18);
 }
 
-.no {
-    background-color: #ff6961;
-    color: #fff;
-    font-size: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    transition: left 0.3s ease;
+p, a{
+  position:relative;
+  font-weight:700;
+  color: var(--muted);
 }
 
-.cta {
-    gap: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+/* 💘 Botões */
+.cta{
+  position:relative;
+  margin-top: 26px;
+  display:flex;
+  gap: 16px;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
 }
 
-.cta button {
-    width: 150px;
-    font-size: 1.2rem;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
+.cta button{
+  width: 170px;
+  font-size: 1.1rem;
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+  will-change: transform;
 }
 
-.cta button:hover {
-    background-color: #f22d2d;
+/* SIM: botão premium */
+#yes{
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  box-shadow: var(--shadow2);
 }
 
-a {
-    text-decoration: none;
-    color: #666666;
+#yes:hover{
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.02);
+  box-shadow: 0 14px 32px rgba(255,77,109,.35);
 }
 
-/* Estilos do footer */
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background-color: #ffffff;
-    color: #666666;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.8rem;
-    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+#yes:active{
+  transform: translateY(0px) scale(.99);
+}
+
+/* NÃO: fica bonito + pronto pro “fujão” do JS */
+.no{
+  color: var(--accent);
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(255,77,109,.25);
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.no:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.10);
+}
+
+/* Links */
+a{
+  text-decoration:none;
+}
+
+a:hover{
+  color: var(--accent);
+}
+
+/* 🧾 Footer */
+footer{
+  position:fixed;
+  bottom:0; left:0; right:0;
+  height:40px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:.8rem;
+  color: var(--muted);
+  background: rgba(255,255,255,.70);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 -10px 30px rgba(0,0,0,.06);
+}
+
+/* 📱 Responsivo */
+@media (max-width: 420px){
+  .cta button{ width: 150px; }
+  .container{ padding: 36px 18px; border-radius: 22px; }
 }
