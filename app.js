@@ -1,44 +1,40 @@
-<script>
 document.addEventListener("DOMContentLoaded", () => {
-  /* ===== BOTÃO NÃO (FUJÃO MASTER) ===== */
   const btnNo = document.querySelector(".no");
+  const btnYes = document.getElementById("yes");
 
+  // --- NÃO fujão master 😈 ---
   const moveButton = () => {
     if (!btnNo) return;
 
-    const padding = 10; // margem pra não encostar na borda
+    const padding = 20;
     const maxX = Math.max(0, window.innerWidth - btnNo.offsetWidth - padding);
     const maxY = Math.max(0, window.innerHeight - btnNo.offsetHeight - padding);
 
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
 
-    btnNo.style.position = "fixed"; // melhor que absolute pra tela inteira
+    btnNo.style.position = "fixed";
     btnNo.style.left = `${x}px`;
     btnNo.style.top = `${y}px`;
     btnNo.style.transition = "all 0.12s ease";
+    btnNo.style.zIndex = 9999;
   };
 
   if (btnNo) {
-    // foge assim que chega perto 😈
     btnNo.addEventListener("mouseenter", moveButton);
     btnNo.addEventListener("mouseover", moveButton);
     btnNo.addEventListener("click", (e) => {
       e.preventDefault();
       moveButton();
     });
-  } else {
-    console.warn("Botão .no não encontrado no HTML.");
   }
 
-  /* ===== BOTÃO SIM (FINAL FELIZ) ===== */
-  const btnYes = document.getElementById("yes");
-
+  // --- SIM com SweetAlert + redirect 💖 ---
   if (btnYes) {
     btnYes.addEventListener("click", (e) => {
       e.preventDefault();
 
-      // Se o SweetAlert não estiver carregado, faz fallback
+      // fallback caso SweetAlert não carregue
       if (typeof Swal === "undefined") {
         alert("Nada mais que a obrigação, te amo ❤️");
         window.location.href = "SEU_LINK_AQUI";
@@ -55,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "https://www.youtube.com/watch?v=-dy1uuJa-vw";
       });
     });
-  } else {
-    console.warn('Botão #yes não encontrado no HTML.');
   }
+
+  // Só pra você ver no console que carregou ✅
+  console.log("JS carregou certinho ✅", { btnNo, btnYes, Swal: typeof Swal });
 });
-</script>
