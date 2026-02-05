@@ -1,41 +1,39 @@
-const btn = document.querySelector(".no");
-let position = 0;
+<script>
+/* ===== BOTÃO NÃO (FUJÃO MASTER) ===== */
+const btnNo = document.querySelector(".no");
 
 const moveButton = () => {
-position = position ? 0 : 150;
-btn.style.transform = `translate(${position}px, 0px)`;
-btn.style.transition = "all 0.15s ease";
+  const maxX = window.innerWidth - btnNo.offsetWidth;
+  const maxY = window.innerHeight - btnNo.offsetHeight;
+
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  btnNo.style.position = "absolute";
+  btnNo.style.left = `${x}px`;
+  btnNo.style.top = `${y}px`;
+  btnNo.style.transition = "all 0.2s ease";
 };
 
-btn.addEventListener("click", moveButton);
-btn.addEventListener("mouseover", moveButton);
+btnNo.addEventListener("mouseover", moveButton);
+btnNo.addEventListener("click", moveButton);
 
+/* ===== BOTÃO SIM (FINAL FELIZ) ===== */
+const btnYes = document.getElementById("yes");
 
-const sim = document.getElementById('yes');
-
-sim.addEventListener("click", () => {
-
-let timerInterval
-Swal.fire({
- title: 'Obrigado 😍',
- html: 'Prometo lhe fazer feliz. 💘',
- timer: 2000,
- timerProgressBar: true,
- didOpen: () => {
-Swal.showLoading()
-const b = Swal.getHtmlContainer().querySelector('b')
-timerInterval = setInterval(() => {
-  b.textContent = Swal.getTimerLeft()
-}, 100)
-},
-willClose: () => {
- clearInterval(timerInterval)
-}
-}).then((result) => {
-/* Read more about handling dismissals below */
- if (result.dismiss === Swal.DismissReason.timer) {
-console.log('I was closed by the timer')
-}
-})
-
+btnYes.addEventListener("click", () => {
+  Swal.fire({
+    title: "💖",
+    html: "<strong>Nada mais que a obrigação,<br>te amo ❤️</strong>",
+    timer: 2500,
+    timerProgressBar: true,
+    showConfirmButton: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  }).then(() => {
+    // 👉 REDIRECIONA DEPOIS
+    window.location.href = "SEU_LINK_AQUI";
+  });
 });
+</script>
